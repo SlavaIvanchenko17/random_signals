@@ -1,1 +1,1 @@
-# random_signals
+# Lab 1.1 - 1.2
