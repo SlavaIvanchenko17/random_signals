@@ -32,6 +32,13 @@ def math_expectation(data):
 def dispertion(data):
     return np.var(data)
 
+def crosscorrelation(data1, data2):
+    result = np.correlate(data1, data2, mode='same')
+    return result
+
+def autocorrelation(data):
+    result = np.correlate(data, data, mode='full')
+    return result[result.size // 2:]
 
 n = int(input("Harmonics = "))
 W_max = int(input("Frequency = "))
@@ -47,10 +54,10 @@ plt.figure(2)
 plt.plot(time)
 plt.title('Dependence of time on N')
 plt.figure(3)
-plt.xcorr(signal1, signal2, usevlines=True, normed=True, maxlags=200, lw=3)
+plt.plot(crosscorrelation(signal1, signal2))
 plt.title('Crosscorrelation')
 plt.figure(4)
-plt.acorr(signal1, usevlines=True, normed=True, maxlags=200, lw=3)
+plt.plot(autocorrelation(signal1))
 plt.title('Autocorrelation')
 plt.show()
 print("Math expectation = " + str(math_expectation(signal1)))
