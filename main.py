@@ -4,17 +4,15 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 def gen_signal(n, W_max, N):
-    A = random.random()
-    fi = random.random()
     signals = np.zeros(N)
     step = W_max/n
-    w = step
     
-    for t in range(N):
-        for _ in range(n):
-            signals[t] += A * np.sin(t * w + fi)
-            w += step
-        w = step
+    for i in range(n):
+        A = random.random()
+        fi = random.random()
+        w = i * step
+        for t in range(N):
+            signals[t] += A * np.sin(w * t + fi)
     return signals
 
 def gen_time(n, W_max, N):
